@@ -1,0 +1,16 @@
+{
+  "name": "unrem",
+  "version": "1.0.0",
+  "description": "remove unused variables",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "mayursiinh",
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^7.1.0",
+    "chalk": "^2.4.2",
+    "jest": "^24.9.0"
+  }
+}
