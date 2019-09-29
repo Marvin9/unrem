@@ -6,4 +6,8 @@ const code = fs.readFileSync('./custom_test/testcode.js', 'utf8')
 
 let remove = new Remover(code)
 
-remove.remove()
+try {
+    remove.remove()
+} catch(err) {
+    throw new Error(err)
+}
