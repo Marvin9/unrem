@@ -1,4 +1,7 @@
 # unrem
+
+[![Build Status](https://travis-ci.com/Marvin9/unrem.svg?branch=master)](https://travis-ci.com/Marvin9/unrem)
+
 👍 Find unused variables of javascript code. No transpiling dependecies. Under development.
 
 ### Clone repository
