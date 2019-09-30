@@ -5,6 +5,7 @@ const log = console.log
 const rm = require('./lib/Remover')
 const path = require('path')
 
+console.time("PROCESS TIME")
 if (process.argv.length < 3) {
     log(chalk.red(`node index path/to/file.js\nnode index .     To Scan all .js files from this directory`))
 } else {
@@ -20,6 +21,7 @@ if (process.argv.length < 3) {
 
     }
 }
+console.timeEnd("PROCESS TIME")
 
 function isDir(path) {
     return fs.lstatSync(path).isDirectory()
@@ -46,7 +48,9 @@ function  processFile(currPath) {
         remover.process(str)
     } catch(err) {
         if(err.parsingError) {
-            log(chalk.red(`Parsing Error : ${currPath}`))
+            log(chalk.red(`Parsing Error : ${err.parsingError}`))
+        } else {
+            log(chalk.red(`${err}`))
         }
     }
 } 
