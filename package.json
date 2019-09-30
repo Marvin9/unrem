@@ -2,9 +2,8 @@
   "name": "unrem",
   "version": "1.0.0",
   "description": "remove unused variables",
-  "main": "index.js",
-  "scripts": {
-    "test": ""
+  "bin": {
+    "cleanup-js": "./index.js"
   },
   "author": "mayursiinh",
   "license": "MIT",

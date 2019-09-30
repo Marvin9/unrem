@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs')
 const chalk = require('chalk')
 const log = console.log
@@ -5,7 +6,7 @@ const rm = require('./lib/Remover')
 const path = require('path')
 
 if (process.argv.length < 3) {
-    log(chalk.red(`node index paht/to/file.js\nnode index .     To Scan all .js files from this directory`))
+    log(chalk.red(`node index path/to/file.js\nnode index .     To Scan all .js files from this directory`))
 } else {
     let filepath = process.argv[2]
 
@@ -24,7 +25,7 @@ function isDir(path) {
     return fs.lstatSync(path).isDirectory()
 }
 
-function iterateDir(currPath = __dirname) {
+function iterateDir(currPath = process.cwd()) {
     if(isDir(currPath)) {
         let dirList = fs.readdirSync(currPath)
         for(var i = 0, i_bound = dirList.length; i < i_bound; i++) {
@@ -44,6 +45,8 @@ function  processFile(currPath) {
         let str = `${path.dirname(currPath)}\\${chalk.green.bold(path.basename(currPath))} Stats : `
         remover.process(str)
     } catch(err) {
-        throw new Error(err)
+        if(err.parsingError) {
+            log(chalk.red(`Parsing Error : ${currPath}`))
+        }
     }
 } 
