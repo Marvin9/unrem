@@ -8,7 +8,7 @@ let processedFiles = 0
 
 console.time("PROCESS TIME")
 if (process.argv.length < 3) {
-    log(chalk.red(`node index path/to/file.js\nnode index .     To Scan all .js files from this directory`))
+    log(chalk.red(`cleanup-js path/to/file.js\ncleanup-js .     To Scan all .js files from this directory`))
 } else {
     let filepath = process.argv[2]
 
@@ -52,7 +52,7 @@ function processFile(currPath) {
         processedFiles++
     } catch (err) {
         if (err.parsingError) {
-            log(chalk.red(`Parsing Error : ${currPath}`))
+            // log(chalk.red(`Parsing Error : ${currPath}`))
         }
     }
 } 
