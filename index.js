@@ -6,26 +6,33 @@ const rm = require('./lib/Remover')
 const path = require('path')
 let processedFiles = 0
 
-console.time("PROCESS TIME")
-if (process.argv.length < 3) {
-    log(chalk.red(`cleanup-js path/to/file.js\ncleanup-js .     To Scan all .js files from this directory`))
-} else {
-    let filepath = process.argv[2]
+try {
+    console.time("PROCESS TIME")
+    if (process.argv.length < 3) {
+        log(chalk.red(`cleanup-js path/to/file.js\ncleanup-js .     To Scan all .js files from this directory`))
+    } else if (process.argv.length === 3) {
+        let filepath = process.argv[2]
 
-    if (filepath === ".") {
-        iterateDir().then(() => {
-            log(`\nNUMBER OF FILES PROCESSED : ${processedFiles}`)
+        if (filepath === ".") {
+            iterateDir().then(() => {
+                log(`\nNUMBER OF FILES PROCESSED : ${processedFiles}`)
+                console.timeEnd("PROCESS TIME")
+            })
+        } else {
+
+            processFile(filepath)
             console.timeEnd("PROCESS TIME")
-        })
+        }
     } else {
-
-        let code = fs.readFileSync(filepath, 'utf8')
-        let remover = new rm(code)
-        remover.process()
+        for (var i = 2, i_bound = process.argv.length; i < i_bound; i++) {
+            let filepath = process.argv[i]
+            processFile(filepath)
+        }
         console.timeEnd("PROCESS TIME")
     }
+} catch (err) {
+    throw new Error(err)
 }
-
 function isDir(path) {
     return fs.lstatSync(path).isDirectory()
 }
