@@ -22,7 +22,7 @@ if (process.argv.length < 3) {
         let code = fs.readFileSync(filepath, 'utf8')
         let remover = new rm(code)
         remover.process()
-
+        console.timeEnd("PROCESS TIME")
     }
 }
 
