@@ -32,3 +32,7 @@ a = setInterval(() => {
 console.log(`${b} -> b is considered as used variable`)
 
 ```
+
+## Demo - Babel's 4000+ files
+
+![Babel Demo](https://github.com/Marvin9/unrem/blob/master/demo.gif)
